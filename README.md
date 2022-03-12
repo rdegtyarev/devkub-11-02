@@ -63,25 +63,7 @@
 ---
 <details>
 
-  <summary>Spoiler warning</summary>
-
-  
-
-  Spoiler text. Note that it's important to have a space after the summary tag. You should be able to write any markdown you want inside the `<details>` tag... just make sure you close `<details>` afterward.
-
-  
-
-  ```javascript
-
-  console.log("I'm a code block!");
-
-  ```
-
-  
-
-</details>
-## Задача 3: API Gateway * (необязательная)
-
+  <summary>## Задача 3: API Gateway * (необязательная)</summary>
 ### Есть три сервиса:
 
 **minio**
@@ -137,6 +119,10 @@ curl -X GET http://localhost/images/4e6df220-295e-4231-82bc-45e4b1484430.jpg
 ---
 
 #### [Дополнительные материалы: как запускать, как тестировать, как проверить](https://github.com/netology-code/devkub-homeworks/tree/main/11-microservices-02-principles)  
+</details>
+
+
+
 
 
 ### Решение
