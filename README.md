@@ -61,7 +61,25 @@
 - Если нужна модель публикация-подписка, можно выбрать Kafka
 
 ---
+<details>
 
+  <summary>Spoiler warning</summary>
+
+  
+
+  Spoiler text. Note that it's important to have a space after the summary tag. You should be able to write any markdown you want inside the `<details>` tag... just make sure you close `<details>` afterward.
+
+  
+
+  ```javascript
+
+  console.log("I'm a code block!");
+
+  ```
+
+  
+
+</details>
 ## Задача 3: API Gateway * (необязательная)
 
 ### Есть три сервиса:
@@ -129,6 +147,10 @@ curl -X GET http://localhost/images/4e6df220-295e-4231-82bc-45e4b1484430.jpg
 - **GET /v1/user** отсутствует в server.py
 
 **Конфиг nginx:**
+https://github.com/rdegtyarev/devkub-11-02/blob/main/task-3/gateway/nginx.conf  
+
+**docker-compose:**  
+https://github.com/rdegtyarev/devkub-11-02/blob/main/task-3/docker-compose.yaml
 
 **Примеры команд для проверки:**
 
