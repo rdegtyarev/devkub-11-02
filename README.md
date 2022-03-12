@@ -45,18 +45,20 @@
 
 ### Решение
 
-Требования | Apache Kafka | Apache ActiveMQ | RabbitMQ 
+Требования | Apache Kafka | Apache ActiveMQ | RabbitMQ
 --- | --- | --- | --- |
 Поддержка кластеризации для обеспечения надежности | Да | Да | Да
 Хранение сообщений на диске в процессе доставки| Да | Да | Да
 Высокая скорость работы | Да+ | Нет (в сравнении с kafka) | Нет (в сравнении с kafka) 
-Поддержка различных форматов сообщений | Да | Да | Нет
+Поддержка различных форматов сообщений | Да | Да | Да
 Разделение прав доступа к различным потокам сообщений | Да | Да | Да
-Протота эксплуатации | Да | Да | Нет
+Протота эксплуатации | Нет | Нет | Да
   
-  
-Для выбора нужно больше вводных, относительно архитектуры приложения. Зависит от 
-
+Выбор зависит от выбора способа обмена сообщениями.
+- Если неообходима классическая очередь сообщений - можно выбрать RabbitMQ (хотя в RabbitMQ можно реализовать и схему публикация-подписка)
+    - Паблишеры отправляют сообщения на exchange’и
+    - Получатели поддерживают постоянные TCP-соединения с RabbitMQ и объявляют, какую очередь(-и) они получают
+- Если нужна модель публикация-подписка, можно выбрать Kafka
 
 ---
 
@@ -116,12 +118,32 @@ curl -X GET http://localhost/images/4e6df220-295e-4231-82bc-45e4b1484430.jpg
 
 ---
 
-#### [Дополнительные материалы: как запускать, как тестировать, как проверить](https://github.com/netology-code/devkub-homeworks/tree/main/11-microservices-02-principles)
+#### [Дополнительные материалы: как запускать, как тестировать, как проверить](https://github.com/netology-code/devkub-homeworks/tree/main/11-microservices-02-principles)  
 
----
 
-### Как оформить ДЗ?
+### Решение
 
-Выполненное домашнее задание пришлите ссылкой на .md-файл в вашем репозитории.
+В задании несколько неточностей:
+- Чтобы заработало нужно установить новую версию Flask (requirements.txt > Flask==2.0.3).
+- **POST /v1/register** отсутствует в server.py
+- **GET /v1/user** отсутствует в server.py
 
+**Конфиг nginx:**
+
+**Примеры команд для проверки:**
+
+Получить токен
+```
+curl -X POST -H 'Content-Type: application/json' -d '{"login":"bob", "password":"qwe123"}' http://localhost/token
+```  
+
+Загрузить изображение
+```
+$ curl -X POST -H 'Authorization: Bearer <<your token>>' -H 'Content-Type: octet/stream' --data-binary @1.jpg http://localhost/upload
+```  
+
+Скачать изображение
+```
+curl -X GET -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJib2IifQ.hiMVLmssoTsy1MqbmIoviDeFPvo-nCd92d4UFiN2O2I' http://localhost/images/<<your image>>.jpg > 1.jpg
+```
 ---
